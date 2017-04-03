@@ -12,8 +12,8 @@
 	
 	<c:import url="cabecalho.jsp"></c:import>
 	
-	<!-- Cria o DAO -->
-	<jsp:useBean id="dao" class="br.com.caelum.jdbc.dao.ContatoDao"></jsp:useBean>
+	<!-- Cria o DAO obs: Foi comentado a linha, pois esse não é mais a melhor maniera de se fazer. Devemos trazer pronto o objeto!
+	<jsp:useBean id="dao" class="br.com.caelum.jdbc.dao.ContatoDao"></jsp:useBean> -->
 	
 	<h1>Listagem de contatos:</h1>
 	<table>
@@ -22,10 +22,11 @@
 			<td>Email</td>
 			<td>Endereço</td>
 			<td>Data Nascimento</td>
+			<td></td>
 		</tr>
 		
 		<!--Percorre contatos -->
-		<c:forEach var="contato" items="${dao.lista()}">
+		<c:forEach var="contato" items="${contatos}">
 			<tr>
 				<td>${contato.nome}</td>
 				<td>
@@ -41,6 +42,7 @@
 				<td>
 					<fmt:formatDate value="${contato.dataNascimento.time}" pattern="dd/MM/yyyy"/>
 				</td>
+				<td><a href="mvc?logica=RemoveContatoLogica&id=${contato.id}">Remover</a></td>
 			</tr>
 		</c:forEach>
 	</table>

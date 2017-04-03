@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,31 +40,35 @@ public class AdicionaContatoServlet extends HttpServlet {
 			System.out.println("Erro ao converter a data!");
 			return;
 		}
-		
-		//montando objeto:
-		
+
+		// montando objeto:
+
 		Contato c = new Contato();
 		c.setNome(nome);
 		c.setEndereco(endereco);
 		c.setEmail(email);
 		c.setDataNascimento(dataNascimento);
-		
-		//salva o contato:
-		
+
+		// salva o contato:
+
 		ContatoDao dao = new ContatoDao();
 		dao.adiciona(c);
-		
-		//retorno para o navegador(cliente):
-		
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>Contato Adicionado!t</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("O Contato "+ c.getNome() + " foi adicionado com exito!");
-		out.println("</body>");
-		out.println("</html>");
 
+		// retorno para o navegador(cliente):
+
+		/*
+		 * out.println("<html>"); out.println("<head>");
+		 * out.println("<title>Contato Adicionado!t</title>");
+		 * out.println("</head>"); out.println("<body>");
+		 * out.println("O Contato "+ c.getNome() +
+		 * " foi adicionado com exito!"); out.println("</body>");
+		 * out.println("</html>");
+		 */
+
+		// retorno atraves do redirecionamento para uma JSP:
+
+		RequestDispatcher rd = request.getRequestDispatcher("/contato-adicionado.jsp");
+		rd.forward(request, response);
 	}
 
 }
