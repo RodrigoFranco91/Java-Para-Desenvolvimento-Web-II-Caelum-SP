@@ -18,6 +18,11 @@ public class ContatoDao {
 	public ContatoDao(){
 		this.connection = new ConnectionFactory().getConnection();
 	}
+	
+	//CONSTRUTOR QUE RECEBE POR PARAMETRO A CONEXAO, POIS AGORA A CONEXAO É CRIADA NO FILTRO ( INJECAO DE DEPENDENCIA E INVERSAO DE CONTROLE)
+	public ContatoDao(Connection con){
+		this.connection = con;
+	}
 
 	public void adiciona(Contato c){
 		String sql="INSERT INTO CONTATOS(nome,email,endereco,dataNascimento) VALUES(?,?,?,?)";
