@@ -19,7 +19,7 @@ public class ContatoDao {
 		this.connection = new ConnectionFactory().getConnection();
 	}
 	
-	//CONSTRUTOR QUE RECEBE POR PARAMETRO A CONEXAO, POIS AGORA A CONEXAO É CRIADA NO FILTRO ( INJECAO DE DEPENDENCIA E INVERSAO DE CONTROLE)
+	//CONSTRUTOR QUE RECEBE POR PARAMETRO A CONEXAO, POIS AGORA A CONEXAO ï¿½ CRIADA NO FILTRO ( INJECAO DE DEPENDENCIA E INVERSAO DE CONTROLE)
 	public ContatoDao(Connection con){
 		this.connection = con;
 	}
@@ -88,7 +88,7 @@ public class ContatoDao {
 	}
 	
 	public void deleta(Contato c){
-		String sql = "DELETE FROM Contatos WHERE id=?";
+		String sql = "DELETE FROM CONTATOS WHERE id=?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setLong(1, c.getId());
